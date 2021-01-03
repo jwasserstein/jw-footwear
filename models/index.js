@@ -1,4 +1,5 @@
-const mongoose     = require('mongoose');
+const mongoose = require('mongoose'),
+	  Users    = require('./users');
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/jw-footwear';
 
@@ -10,4 +11,4 @@ mongoose.connect(dbURI, {
 });
 mongoose.set('useCreateIndex', true);
 
-module.exports = {};
+module.exports = {Users};

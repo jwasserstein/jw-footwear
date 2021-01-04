@@ -7,7 +7,7 @@ const express = require('express'),
 router.get('/', async function(req, res){
     try {
         const products = await db.Products.find();
-        return res.json(products);
+        return res.json({products});
     } catch(err) {
         return res.status(500).json({error: err.message});
     }
@@ -29,7 +29,7 @@ router.post('/', isUserLoggedIn, async function(req, res){
             rating: 0,
             reviews: []
         });
-        return res.json(product);
+        return res.json({product});
     } catch(err) {
         return res.status(500).json({error: err.message});
     }

@@ -5,6 +5,7 @@
 - sign in - POST /auth/signin
 - sign up - POST /auth/signup
 - list products - GET /products
+- add product - POST /products
 
 # Models
 - Products
@@ -14,6 +15,7 @@
     - short description
     - long description
     - sizes in stock
+    - image url
     - reviews
 - Reviews
     - author

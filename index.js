@@ -10,6 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use(express.static('public'));
 
 app.use(function(req, res, next) {
 	return res.status(404).json({error: 'Route not found'});

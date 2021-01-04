@@ -14,6 +14,7 @@
     - short description
     - long description
     - sizes in stock
+    - reviews
 - Reviews
     - author
     - rating
@@ -27,3 +28,9 @@
 - Orders
     - purchaser
     - items
+
+# Code to Share
+- Auth routes
+- Auth middelware
+- User model
+- Helper functions

@@ -1,13 +1,15 @@
 require('dotenv').config();
-const express = require('express'),
-	  app     = express(),
-	  bodyParser = require('body-parser'),
-	  cors       = require('cors'),
-	  authRoutes = require('./routes/auth');
+const express       = require('express'),
+	  app           = express(),
+	  bodyParser    = require('body-parser'),
+	  cors          = require('cors'),
+	  authRoutes    = require('./routes/auth'),
+	  productRoutes = require('./routes/products');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 app.use(function(req, res, next) {
 	return res.status(404).json({error: 'Route not found'});

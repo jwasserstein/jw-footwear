@@ -4,12 +4,14 @@ const express       = require('express'),
 	  bodyParser    = require('body-parser'),
 	  cors          = require('cors'),
 	  authRoutes    = require('./routes/auth'),
-	  productRoutes = require('./routes/products');
+	  productRoutes = require('./routes/products'),
+	  orderRoutes   = require('./routes/orders');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 app.use(express.static('public'));
 
 app.use(function(req, res, next) {

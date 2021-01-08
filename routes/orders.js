@@ -50,7 +50,8 @@ router.post('/', isUserLoggedIn, async function(req, res){
         user.orders.push(order._id);
         await user.save();
 
-        return res.json(order);
+        const orders = await db.Orders.find({user: res.locals.user.id});
+        return res.json(orders);
     } catch(err) {
         return res.status(500).json({error: err.message});
     }

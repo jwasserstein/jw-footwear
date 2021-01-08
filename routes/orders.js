@@ -16,8 +16,7 @@ router.get('/', isUserLoggedIn, async function(req, res){
 router.post('/', isUserLoggedIn, async function(req, res){
     try {
         const missingFields = checkMissingFields(req.body, ['items', 'shippingName', 'shippingAddress', 'shippingCity', 'shippingState', 
-                                                            'shippingCountry', 'billingName', 'billingAddress', 'billingCard', 
-                                                            'billingExpDate', 'billingSecCode']);
+                                                            'shippingCountry', 'billingCard', 'billingExpDate', 'billingSecCode']);
 		if(missingFields.length){
 			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
         }

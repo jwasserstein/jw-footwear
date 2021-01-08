@@ -1,6 +1,6 @@
 - Add input validation to create order route
     - Is the requested size actually in stock?
-    
+- Add billing fields for city, state, and country
 
 # Routes
 - sign in - POST /auth/signin

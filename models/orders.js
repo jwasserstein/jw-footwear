@@ -46,14 +46,6 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    billingName: {
-        type: String,
-        required: true
-    },
-    billingAddress: {
-        type: String,
-        required: true
-    },
     billingCard: {
         type: Number,
         required: true

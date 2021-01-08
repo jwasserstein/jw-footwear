@@ -15,18 +15,35 @@ router.get('/', isUserLoggedIn, async function(req, res){
 
 router.post('/', isUserLoggedIn, async function(req, res){
     try {
-        const missingFields = checkMissingFields(req.body, ['items', 'subTotal', 'shipping', 'taxes', 'shippingName', 
-                                                            'shippingAddress', 'shippingCity', 'shippingState', 'shippingCountry', 
-                                                            'billingName', 'billingAddress', 'billingCard', 'billingExpDate', 
-                                                            'billingSecCode']);
+        const missingFields = checkMissingFields(req.body, ['items', 'shippingName', 'shippingAddress', 'shippingCity', 'shippingState', 
+                                                            'shippingCountry', 'billingName', 'billingAddress', 'billingCard', 
+                                                            'billingExpDate', 'billingSecCode']);
 		if(missingFields.length){
 			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
         }
 
+        let {items} = req.body;
+        const products = await db.Products.find({
+            _id: {
+                $in: items.map(i => i.id)
+            }
+        }, 'price');
+        let subTotal = 0;
+        items = items.map(i => {
+            const price = products.find(p => p.id === i.id).price;
+            subTotal += price * i.quantity;
+            return {...i, price};
+        });
+        const shipping = 10;
+        const taxes = subTotal*.0635;
+
         const order = await db.Orders.create({
             ...req.body,
             user: res.locals.user.id,
-            items: JSON.parse(req.body.items)
+            subTotal: subTotal,
+            shipping: shipping,
+            taxes: taxes,
+            items: items
         });
 
         const user = await db.Users.findById(res.locals.user.id);

@@ -1,4 +1,6 @@
 - Add input validation to create order route
+    - Is the requested size actually in stock?
+    
 
 # Routes
 - sign in - POST /auth/signin

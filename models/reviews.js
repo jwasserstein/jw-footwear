@@ -6,9 +6,13 @@ const reviewSchema = new mongoose.Schema({
         ref: 'product',
         required: true
     },
-    author: {
+    authorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
+        required: true
+    },
+    authorUsername: {
+        type: String,
         required: true
     },
     rating: {

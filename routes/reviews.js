@@ -28,7 +28,8 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
 
         const review = await db.Reviews.create({
             product: req.params.productId,
-            author: res.locals.user.id,
+            authorId: res.locals.user.id,
+            authorUsername: res.locals.user.username,
             rating: Math.floor(+req.body.rating),
             text: req.body.text
         });
@@ -36,6 +37,10 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
         const product = await db.Products.findById(req.params.productId);
         product.reviews.push(review._id);
         await product.save();
+
+        const user = await db.Users.findById(res.locals.user.id);
+        user.reviews.push(review._id);
+        await user.save();
 
         const reviews = await db.Reviews.find({product: req.params.productId});
         return res.json(reviews);

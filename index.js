@@ -1,5 +1,4 @@
 require('dotenv').config();
-import sslRedirect from 'heroku-ssl-redirect';
 const express       = require('express'),
 	  app           = express(),
 	  bodyParser    = require('body-parser'),
@@ -7,9 +6,10 @@ const express       = require('express'),
 	  authRoutes    = require('./routes/auth'),
 	  productRoutes = require('./routes/products'),
 	  orderRoutes   = require('./routes/orders'),
-	  reviewRoutes  = require('./routes/reviews');
+	  reviewRoutes  = require('./routes/reviews'),
+	  {redirectToHTTPS} = require('./middleware');
 
-app.use(sslRedirect());
+app.use(redirectToHTTPS);
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);

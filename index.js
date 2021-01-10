@@ -1,4 +1,5 @@
 require('dotenv').config();
+const sslRedirect   = require('heroku-ssl-redirect');
 const express       = require('express'),
 	  app           = express(),
 	  bodyParser    = require('body-parser'),
@@ -8,6 +9,7 @@ const express       = require('express'),
 	  orderRoutes   = require('./routes/orders'),
 	  reviewRoutes  = require('./routes/reviews');
 
+app.use(sslRedirect());
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);

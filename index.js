@@ -5,13 +5,15 @@ const express       = require('express'),
 	  cors          = require('cors'),
 	  authRoutes    = require('./routes/auth'),
 	  productRoutes = require('./routes/products'),
-	  orderRoutes   = require('./routes/orders');
+	  orderRoutes   = require('./routes/orders'),
+	  reviewRoutes  = require('./routes/reviews');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/reviews', reviewRoutes);
 app.use(express.static('public'));
 
 app.use(function(req, res, next) {

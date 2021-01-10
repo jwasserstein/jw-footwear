@@ -47,6 +47,11 @@ router.post('/', isUserLoggedIn, async function(req, res){
 
         const user = await db.Users.findById(res.locals.user.id);
         user.orders.push(order._id);
+        items.forEach(i => {
+            if(!user.orderedProducts.includes(i.id)){
+                user.orderedProducts.push(i.id);
+            }
+        });
         await user.save();
 
         const orders = await db.Orders.find({user: res.locals.user.id});

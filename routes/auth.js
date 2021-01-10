@@ -23,6 +23,7 @@ router.post('/signup', async function(req, res) {
 			id: user._id,
 			username: user.username,
 			joinDate: user.joinDate,
+			orderedProducts: user.orderedProducts,
 			token
 		});
 	} catch (err) {
@@ -52,6 +53,7 @@ router.post('/signin', async function (req, res) {
 				id: user._id,
 				username: user.username,
 				joinDate: user.joinDate,
+				orderedProducts: user.orderedProducts,
 				token
 			});
 		} else {
@@ -63,24 +65,37 @@ router.post('/signin', async function (req, res) {
 });
 
 router.post('/changePassword', isUserLoggedIn, async function(req, res){
-	const missingFields = checkMissingFields(req.body, ['currentPassword', 'newPassword', 'repeatNewPassword']);
-	if(missingFields.length){
-		return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
-	}
-	if(req.body.newPassword !== req.body.repeatNewPassword){
-		return res.status(400).json({error: 'New passwords must match'});
-	}
-
-	const user = await db.Users.findById(res.locals.user.id);
-	const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
-	if(!isMatch){
-		return res.status(401).json({error: 'Incorrect password'});
-	}
-	user.password = req.body.newPassword; // pre-save hook will salt & hash
-	user.save();
+	try {
+		const missingFields = checkMissingFields(req.body, ['currentPassword', 'newPassword', 'repeatNewPassword']);
+		if(missingFields.length){
+			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
+		}
+		if(req.body.newPassword !== req.body.repeatNewPassword){
+			return res.status(400).json({error: 'New passwords must match'});
+		}
 	
-	const message = 'Successfully changed your password';
-	return res.json({message});
+		const user = await db.Users.findById(res.locals.user.id);
+		const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
+		if(!isMatch){
+			return res.status(401).json({error: 'Incorrect password'});
+		}
+		user.password = req.body.newPassword; // pre-save hook will salt & hash
+		user.save();
+		
+		const message = 'Successfully changed your password';
+		return res.json({message});
+	} catch (err) {
+		return res.status(500).json({error: err.message});
+	}
+});
+
+router.get('/orderedProducts', isUserLoggedIn, async function(req, res){
+	try {
+		const user = await db.Users.findById(res.locals.user.id);
+		return res.json(user.orderedProducts);
+	} catch (err) {
+		return res.status(500).json({error: err.message});
+	}
 });
 
 module.exports = router;

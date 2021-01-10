@@ -34,15 +34,17 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
             text: req.body.text
         });
 
+        const reviews = await db.Reviews.find({product: req.params.productId});
         const product = await db.Products.findById(req.params.productId);
         product.reviews.push(review._id);
+        product.rating = Math.round(reviews.reduce((acc, next) => acc + next.rating, 0) / reviews.length);
         await product.save();
 
         const user = await db.Users.findById(res.locals.user.id);
         user.reviews.push(review._id);
         await user.save();
 
-        const reviews = await db.Reviews.find({product: req.params.productId});
+        
         return res.json(reviews);
     } catch(err) {
         return res.status(500).json({error: err.message});

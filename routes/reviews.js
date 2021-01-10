@@ -26,6 +26,11 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
             return res.status(400).json({error: 'Text field must not be empty'});
         }
 
+        const user = await db.Users.findById(res.locals.user.id);
+        if(!user.orderedProducts.includes(req.params.productId)){
+            return res.status(400).json({error: "You can't review a product you haven't purchased"});
+        }
+
         const review = await db.Reviews.create({
             product: req.params.productId,
             authorId: res.locals.user.id,
@@ -40,7 +45,6 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
         product.rating = Math.round(reviews.reduce((acc, next) => acc + next.rating, 0) / reviews.length);
         await product.save();
 
-        const user = await db.Users.findById(res.locals.user.id);
         user.reviews.push(review._id);
         await user.save();
 

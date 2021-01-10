@@ -22,7 +22,11 @@ const userSchema = new mongoose.Schema({
 	joinDate: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	orderedProducts: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'product'
+	}]
 });
 
 userSchema.pre('save', async function(next){

@@ -1,6 +1,5 @@
 - Add input validation to create order route
     - Is the requested size actually in stock?
-- Auto redirect to https
 
 # Routes
 - sign in - POST /auth/signin

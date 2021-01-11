@@ -42,10 +42,6 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    shippingCountry: {
-        type: String,
-        required: true
-    },
     billingCard: {
         type: Number,
         required: true

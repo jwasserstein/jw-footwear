@@ -26,32 +26,28 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    shippingName: {
+    name: {
         type: String,
         required: true
     },
-    shippingAddress: {
+    address: {
         type: String,
         required: true
     },
-    shippingCity: {
+    city: {
         type: String,
         required: true
     },
-    shippingState: {
+    state: {
         type: String,
         required: true
     },
-    billingCard: {
+    card: {
         type: Number,
         required: true
     },
-    billingExpDate: {
+    expDate: {
         type: String,
-        required: true
-    },
-    billingSecCode: {
-        type: Number,
         required: true
     }
 });

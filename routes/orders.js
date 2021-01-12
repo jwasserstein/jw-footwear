@@ -15,8 +15,8 @@ router.get('/', isUserLoggedIn, async function(req, res){
 
 router.post('/', isUserLoggedIn, async function(req, res){
     try {
-        const missingFields = checkMissingFields(req.body, ['items', 'shippingName', 'shippingAddress', 'shippingCity', 'shippingState', 
-                                                            'billingCard', 'billingExpDate', 'billingSecCode']);
+        const missingFields = checkMissingFields(req.body, ['items', 'name', 'address', 'city', 
+                                                            'state', 'card', 'expDate']);
 		if(missingFields.length){
 			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
         }
@@ -43,7 +43,7 @@ router.post('/', isUserLoggedIn, async function(req, res){
             shipping: shipping,
             taxes: taxes,
             items: items,
-            billingCard: req.body.billingCard.slice(12)
+            card: req.body.card.slice(12)
         });
 
         const user = await db.Users.findById(res.locals.user.id);

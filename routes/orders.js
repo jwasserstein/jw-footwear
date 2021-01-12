@@ -42,7 +42,8 @@ router.post('/', isUserLoggedIn, async function(req, res){
             subTotal: subTotal,
             shipping: shipping,
             taxes: taxes,
-            items: items
+            items: items,
+            billingCard: req.body.billingCard.slice(12)
         });
 
         const user = await db.Users.findById(res.locals.user.id);

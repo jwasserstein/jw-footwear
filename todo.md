@@ -1,5 +1,8 @@
 - Add input validation to create order route
     - Is the requested size actually in stock?
+    - Is the credit card number the correct length?
+    - Is the state a 2 letter abbreviation?
+    - Are the expiration date and security code formatted correctly?
 
 # Routes
 - sign in - POST /auth/signin

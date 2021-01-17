@@ -38,16 +38,13 @@
     - subTotal
     - shipping
     - taxes
-    - shippingName
-    - shippingAddress
-    - shippingCity
-    - shippingState
-    - shippingCountry
-    - billingName
-    - billingAddress
-    - billingCard
-    - billingExpDate
-    - billingSecCode
+    - name
+    - address
+    - city
+    - state
+    - card (last 4 only)
+    - expDate
+    - decCode
 
 # Code to Share
 - Auth routes

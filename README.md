@@ -1,5 +1,5 @@
 # JW Footwear
-JW Footwear is a demonstration e-commerce application that sells shoes.  I made it for the purpose of learning web development.  It allows users to add shoes of various sizes to their cart, palce orders, view their order history, and leave reviews and ratings on products they've purchased.  This repo is the backend of the JW Footwear project. 
+JW Footwear is a demonstration e-commerce application that sells shoes.  I made it for the purpose of learning web development.  It allows users to add shoes of various sizes to their cart, place orders, view their order history, and leave reviews and ratings on products they've purchased.  This repo is the backend of the JW Footwear project. 
 ## Running this Project
 Run this project locally with `node index.js`.  If the environment variable `MONGODB_URI` is set, it will connect to that URI as its database; otherwise, it will try to connect to MongoDB locally.
 

@@ -22,10 +22,22 @@ router.post('/', isUserLoggedIn, async function(req, res){
 		if(missingFields.length){
 			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
         }
+
+        const name = req.sanitize(req.body.name);
+        const price = req.sanitize(req.body.price);
+        const shortDescription = req.sanitize(req.body.shortDescription);
+        const longDescription = req.sanitize(req.body.longDescription);
+        const availableSizes = req.sanitize(req.body.availableSizes);
+        const imageUrl = req.sanitize(req.body.imageUrl);
+
+
         const product = await db.Products.create({
-            ...req.body,
-            price: +req.body.price,
-            availableSizes: JSON.parse(req.body.availableSizes),
+            name: name,
+            shortDescription: shortDescription,
+            longDescription: longDescription,
+            imageUrl: imageUrl,
+            price: +price,
+            availableSizes: JSON.parse(availableSizes),
             rating: 0,
             reviews: []
         });

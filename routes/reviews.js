@@ -6,7 +6,8 @@ const {checkMissingFields} = require('../utils');
 
 router.get('/:productId', async function(req, res){
     try {
-        const reviews = await db.Reviews.find({product: req.params.productId});
+        const productId = req.sanitize(req.params.productId);
+        const reviews = await db.Reviews.find({product: productId});
         return res.json(reviews);
     } catch (err) {
         return res.status(500).json({error: err.message});
@@ -26,21 +27,25 @@ router.post('/:productId', isUserLoggedIn, async function(req, res){
             return res.status(400).json({error: 'Text field must not be empty'});
         }
 
+        const text = req.sanitize(req.body.text);
+        const rating = req.sanitize(req.body.rating);
+        const productId = req.sanitize(req.params.productId);
+
         const user = await db.Users.findById(res.locals.user.id);
-        if(!user.orderedProducts.includes(req.params.productId)){
+        if(!user.orderedProducts.includes(productId)){
             return res.status(400).json({error: "You can't review a product you haven't purchased"});
         }
 
         const review = await db.Reviews.create({
-            product: req.params.productId,
+            product: productId,
             authorId: res.locals.user.id,
             authorUsername: res.locals.user.username,
-            rating: Math.floor(+req.body.rating),
-            text: req.body.text
+            rating: Math.floor(+rating),
+            text: text
         });
 
-        const reviews = await db.Reviews.find({product: req.params.productId});
-        const product = await db.Products.findById(req.params.productId);
+        const reviews = await db.Reviews.find({product: productId});
+        const product = await db.Products.findById(productId);
         product.reviews.push(review._id);
         product.rating = Math.round(reviews.reduce((acc, next) => acc + next.rating, 0) / reviews.length);
         await product.save();

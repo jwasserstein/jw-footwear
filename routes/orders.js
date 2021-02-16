@@ -21,7 +21,18 @@ router.post('/', isUserLoggedIn, async function(req, res){
 			return res.status(400).json({error: 'Missing the following fields: ' + missingFields});
         }
 
-        let {items} = req.body;
+        let items = req.body.items.map(i => ({
+            id: req.sanitize(i.id), 
+            size: +req.sanitize(i.size), 
+            quantity: +req.sanitize(i.quantity)
+        }));
+        const name = req.sanitize(req.body.name);
+        const address = req.sanitize(req.body.address);
+        const city = req.sanitize(req.body.city);
+        const state = req.sanitize(req.body.state);
+        const card = req.sanitize(req.body.card);
+        const expDate = req.sanitize(req.body.expDate);
+
         const products = await db.Products.find({
             _id: {
                 $in: items.map(i => i.id)
@@ -37,13 +48,17 @@ router.post('/', isUserLoggedIn, async function(req, res){
         const taxes = subTotal*.0635;
 
         const order = await db.Orders.create({
-            ...req.body,
+            name: name,
+            address: address,
+            city: city,
+            state: state,
+            expDate: expDate,
             user: res.locals.user.id,
             subTotal: subTotal,
             shipping: shipping,
             taxes: taxes,
             items: items,
-            card: req.body.card.slice(12)
+            card: card.slice(12)
         });
 
         const user = await db.Users.findById(res.locals.user.id);

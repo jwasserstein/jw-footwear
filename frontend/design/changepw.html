@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JW Footwear | Change Password</title>
+        <link rel='stylesheet' type='text/css' href='changepw.css' />
+        <link rel='icon' type='image/x-icon' href='favicon.ico' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+    </head>
+    <body>
+        <header class='Navbar'>
+            <div class='Navbar-burger'>
+                <span class='Navbar-bar'></span>
+                <span class='Navbar-bar'></span>
+                <span class='Navbar-bar'></span>
+            </div>
+
+            <a href='/' class='Navbar-brand'><h1>JW Footwear</h1></a>
+            <div class='Navbar-links-left'>
+                <a href='/' class='Navbar-link'>Home</a>
+                <a href='/products' class='Navbar-link'>Products</a>
+                <a href='/about' class='Navbar-link'>About</a>
+            </div>
+            <div class='Navbar-links-right'>
+                <a href='/cart' class='Navbar-link'>Cart</a>
+                <a href='/profile' class='Navbar-link'>testUsername</a>
+                <a href='/login' class='Navbar-link Navbar-signup-btn'>Sign Out</a>
+            </div>
+        </header>
+        <div class='Navbar-spacer'></div>
+
+        <div class="main-container">
+            <h2>Change your password</h2>
+            <form>
+                <label>
+                    Current Password:
+                    <input type="currentPassword" name="currentPassword" placeholder="Current Password" required />
+                </label>
+                <label>
+                    New Password:
+                    <input type="newPassword" name="newPassword" placeholder="New Password" required />
+                </label>
+                <label>
+                    Repeat New Password:
+                    <input type="repeatNewPassword" name="repeatNewPassword" placeholder="Repeat New Password" required />
+                </label>
+                <button>Submit</button>
+            </form>
+        </div>
+
+        <div class='Footer-spacer'></div>
+        <footer class='LandingPage-footer'>
+            For demonstration purposes only, not a real store.  Made by Justin Wasserstein in 2020.
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+.Footer {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #EFEFEF;
+    border-top: 1px solid #D2D2D2;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.Footer-spacer {
+    height: 52px;
+}

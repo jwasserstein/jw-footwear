@@ -1,0 +1,83 @@
+.ReviewPage-main-container {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.ReviewPage-main-container h2 {
+    text-align: center;
+}
+
+.ReviewPage-item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.ReviewPage-item-container img {
+    width: 260px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.ReviewPage-item-container h3 {
+    text-align: center;
+}
+
+.ReviewPage-item-container div * {
+    margin: 5px 0;
+}
+
+@media (max-width: 900px){
+    .ReviewPage-item-container {
+        flex-direction: column;
+    }
+}
+
+.ReviewPage-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.ReviewPage-form textarea {
+    border-radius: 7px;
+    border: 1px solid black;
+    font-family: 'Roboto', sans-serif;
+    padding: 7px;
+    resize: none;
+    height: 150px;
+    margin-top: 7px;
+    font-size: 16px;
+}
+
+.ReviewPage-form button {
+    text-decoration: none;
+    color: black;
+    background-color: #DBF8FF;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 7px;
+    margin: 20px auto;
+    border: none;
+    max-width: 200px;
+    width: 100%;
+}
+
+.ReviewPage-form button:hover {
+    background-color: #A7EEFF;
+    cursor: pointer;
+}
+
+.ReviewPage-rating-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.ReviewPage-rating-container label {
+    margin-right: 7px;
+}
+
+.ReviewPage-rating {
+    font-size: 24px;
+}

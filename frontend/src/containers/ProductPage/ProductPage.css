@@ -1,0 +1,15 @@
+
+.ProductPage-materials {
+    text-align: center;
+    font-size: 18px;
+}
+
+.ProductPage-product-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto 20px auto;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

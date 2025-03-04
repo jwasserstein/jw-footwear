@@ -1,0 +1,22 @@
+.OrderHistoryPage-main-container h2 {
+    text-align: center;
+}
+
+.OrderHistoryPage-option-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.OrderHistoryPage-option-container p {
+    width: 33%;
+    text-align: center;
+}
+
+.OrderHistoryPage-option-container p:first-of-type {
+    text-align: left;
+}
+
+.OrderHistoryPage-option-container p:last-of-type {
+    text-align: right;
+}

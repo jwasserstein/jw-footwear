@@ -1,0 +1,115 @@
+.ShowPage-main-container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.ShowPage-inner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 900px){
+    .ShowPage-inner-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.ShowPage-image {
+    max-width: 43%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.ShowPage-main-container h2 {
+    font-size: 24px;
+    margin: 30px 0 10px 0;
+}
+
+.ShowPage-price {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+}
+
+.ShowPage-description {
+    font-size: 18px;
+    margin: 0;
+}
+
+@media (max-width: 900px){
+    .ShowPage-main-container h2 {
+        text-align: center;
+    }
+
+    .ShowPage-image {
+        max-width: 100%;
+    }
+}
+
+.ShowPage-price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.ShowPage-price-container button {
+    text-decoration: none;
+    color: black;
+    background-color: #DBF8FF;
+    padding: 10px 50px;
+    font-size: 18px;
+    border-radius: 7px;
+    margin-top: 10px;
+    border: none;
+}
+
+.ShowPage-price-container button:hover {
+    background-color: #A7EEFF;
+    cursor: pointer;
+}
+
+.ShowPage-reviews-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.ShowPage-reviews-container>div:first-of-type {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.ShowPage-reviews-container a {
+    text-decoration: none;
+    color: black;
+    background-color: #DBF8FF;
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 7px;
+    margin-top: 20px;
+    border: none;
+}
+
+.ShowPage-reviews-container a:hover {
+    background-color: #A7EEFF;
+    cursor: pointer;
+}
+
+@media (max-width:900px){
+    .ShowPage-reviews-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ShowPage-reviews-container>div:first-of-type {
+        margin: 0 0 10px 0;
+        width: 100%;
+    }
+}
+
+.ShowPage-rating {
+    font-size: 24px;
+}

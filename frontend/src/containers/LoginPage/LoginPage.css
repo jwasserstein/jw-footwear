@@ -1,0 +1,11 @@
+.LoginPage-main-container {
+    width: 90%;
+    max-width: 575px;
+    margin: auto;
+}
+
+.LoginPage-message {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10vh;
+}
